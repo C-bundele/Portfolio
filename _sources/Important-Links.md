@@ -1,5 +1,8 @@
 ## Diabetes Prediction
 
+### Video Presentation
+#### [Video](https://buffalo.box.com/v/cbundele-diabestes)
+
 ### Streamlit Application
 #### [Visit the Diabestes Prediction Streamlit App](https://diabetes-prediction-zhvdavah5wc6gebo9cuoxv.streamlit.app/)
 
