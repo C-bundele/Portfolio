@@ -1,6 +1,34 @@
+import React, { useState } from "react";
 import { Mail, MapPin, Phone, Github, Linkedin, Send } from "lucide-react";
 
 const ContactSection = () => {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const json = await res.json();
+      if (res.ok && (json.success === true || json.success === "true")) {
+        form.reset();
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -92,11 +120,20 @@ const ContactSection = () => {
                 Send a Message
               </h3>
               
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+                {/* Web3Forms access key */}
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="06af8f36-7a16-4daf-9a3e-604dad19f17b"
+                />
+
                 <div>
                   <label className="text-sm text-muted-foreground mb-2 block">Name</label>
                   <input
+                    name="name"
                     type="text"
+                    required
                     className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-foreground"
                     placeholder="Your name"
                   />
@@ -104,7 +141,9 @@ const ContactSection = () => {
                 <div>
                   <label className="text-sm text-muted-foreground mb-2 block">Email</label>
                   <input
+                    name="email"
                     type="email"
+                    required
                     className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-foreground"
                     placeholder="your@email.com"
                   />
@@ -112,18 +151,31 @@ const ContactSection = () => {
                 <div>
                   <label className="text-sm text-muted-foreground mb-2 block">Message</label>
                   <textarea
+                    name="message"
                     rows={4}
+                    required
                     className="w-full px-4 py-3 rounded-xl bg-muted/50 border border-border focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-foreground resize-none"
                     placeholder="Your message..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl gradient-bg text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                  disabled={status === "sending"}
+                  className="w-full py-4 rounded-xl gradient-bg text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-60"
                 >
                   <Send size={18} />
-                  Send Message
+                  {status === "sending" ? "Sending..." : "Send Message"}
                 </button>
+
+                {status === "sending" && (
+                  <p className="text-sm text-muted-foreground mt-2">Sending...</p>
+                )}
+                {status === "sent" && (
+                  <p className="text-sm text-foreground mt-2">Contact form submitted</p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-destructive mt-2">Failed to send. Please try again.</p>
+                )}
               </form>
             </div>
           </div>
