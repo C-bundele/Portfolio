@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Github, Database, Cloud, Brain, Workflow } from "lucide-react";
 
-const categories = ["All", "Data Engineering", "Machine Learning", "MLOps"];
+const categories = ["All", "Data Engineering", "Machine Learning", "MLOps", "Data Analytics"];
 
 const projects = [
   {
@@ -57,7 +57,7 @@ const projects = [
     tags: ["Airflow", "MLflow", "Docker", "FastAPI"],
   },
   {
-  icon: BarChart,
+  icon: Workflow,
   title: "Sales Data Analytics & Business Insights",
   description: "End-to-end exploratory data analysis and visualization of transactional sales data to uncover revenue trends, product performance, and regional insights.",
   category: "Data Analytics",
