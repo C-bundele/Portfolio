@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Database, Cloud, Brain, Workflow } from "lucide-react";
+import { Github, Database, Cloud, Brain, Workflow } from "lucide-react";
 
 const categories = ["All", "Data Engineering", "Machine Learning", "MLOps"];
 
@@ -9,6 +9,7 @@ const projects = [
     title: "Automated ETL Pipeline with AWS Glue & Redshift",
     description: "Serverless ETL architecture using AWS Glue Jobs, Crawlers, and Redshift with automated batch ingestion.",
     category: "Data Engineering",
+    href: "https://github.com/C-bundele/aws-glue-redshift-etl-pipeline",
     highlights: [
       "Cut processing time by 40%",
       "15-minute real-time analytics",
@@ -21,6 +22,7 @@ const projects = [
     title: "NYC Taxi Demand Forecasting Pipeline",
     description: "End-to-end cloud data pipeline with forecasting using AWS services and Hopsworks Feature Store.",
     category: "Data Engineering",
+    href: "https://github.com/C-bundele/NY-Taxi",
     highlights: [
       "18% improved prediction accuracy",
       "70% reduced manual effort",
@@ -33,6 +35,7 @@ const projects = [
     title: "End-to-End Diabetes Classification",
     description: "ML classification pipeline with cloud deployment, feature engineering, and experiment tracking.",
     category: "Machine Learning",
+    href: "https://github.com/C-bundele/Diabetes-Prediction",
     highlights: [
       "15% faster predictions",
       "30% reduced training time",
@@ -45,6 +48,7 @@ const projects = [
     title: "Full MLOps Pipeline with Drift Detection",
     description: "Production-grade MLOps with data validation, monitoring, drift detection, and automated retraining.",
     category: "MLOps",
+    href: "",
     highlights: [
       "Automated model retraining",
       "Real-time drift detection",
@@ -98,7 +102,7 @@ const ProjectsSection = () => {
         {activeCategory === "All" ? (
           <div className="max-w-6xl mx-auto overflow-hidden py-6">
           <div
-            className="projects-marquee-track flex gap-6 items-stretch"
+            className="projects-marquee-track flex gap-4 items-stretch"
             style={{
               animation: "projectsMarquee 20s linear infinite",
               animationPlayState: hoveredIndex !== null ? "paused" : "running",
@@ -110,7 +114,7 @@ const ProjectsSection = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               className={
-              `projects-marquee-item flex-shrink-0 w-[420px] md:w-[520px] h-[460px] md:h-[480px] ${
+              `projects-marquee-item flex-shrink-0 w-[420px] md:w-[520px] h-[420px] md:h-[440px] ${
                 hoveredIndex === index ? "is-active" : ""
               }`
               }
@@ -122,8 +126,8 @@ const ProjectsSection = () => {
                 }`
               }
               >
-              <div className="group glass p-8 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-6">
+              <div className="group glass p-4 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 flex flex-col h-full">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <project.icon className="text-primary-foreground" size={22} />
@@ -162,11 +166,31 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  <div className="mt-auto pt-6 flex justify-end">
-                    <ArrowUpRight
-                      className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300"
-                      size={20}
-                    />
+                  <div className="mt-auto pt-2 flex justify-end">
+                    {project.href ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label={`Open ${project.title}`}
+                        className="inline-flex"
+                      >
+                        <Github
+                          className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300"
+                          size={26}
+                        />
+                      </a>
+                    ) : (
+                      <span
+                        aria-label={`${project.title} link not set`}
+                        className="inline-flex cursor-not-allowed"
+                      >
+                        <Github
+                          className="text-muted-foreground/50"
+                          size={26}
+                        />
+                      </span>
+                    )}
                   </div>
                 </div>
                 </div>
@@ -255,9 +279,9 @@ const ProjectsSection = () => {
             {filteredProjects.map((project, index) => (
               <div
                 key={index}
-                className="group glass p-8 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 animate-fade-in flex flex-col h-full"
+                className="group glass p-4 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 animate-fade-in flex flex-col h-full"
               >
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <project.icon className="text-primary-foreground" size={22} />
@@ -272,7 +296,7 @@ const ProjectsSection = () => {
                   {project.title}
                 </h3>
                 
-                <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-2 leading-relaxed">
                   {project.description}
                 </p>
 
@@ -296,11 +320,31 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 flex justify-end">
-                  <ArrowUpRight
-                    className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300"
-                    size={20}
-                  />
+                <div className="mt-auto pt-2 flex justify-end">
+                  {project.href ? (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label={`Open ${project.title}`}
+                      className="inline-flex"
+                    >
+                      <Github
+                        className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300"
+                        size={26}
+                      />
+                    </a>
+                  ) : (
+                    <span
+                      aria-label={`${project.title} link not set`}
+                      className="inline-flex cursor-not-allowed"
+                    >
+                      <Github
+                        className="text-muted-foreground/50"
+                        size={26}
+                      />
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

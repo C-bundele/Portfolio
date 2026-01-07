@@ -16,6 +16,7 @@ const projects = [
     description:
       "Serverless ETL architecture using AWS Glue Jobs, Crawlers, and Redshift with automated batch ingestion.",
     category: "Data Engineering",
+    href: "",
     highlights: [
       "Cut processing time by 40%",
       "15-minute real-time analytics",
@@ -29,6 +30,7 @@ const projects = [
     description:
       "End-to-end cloud data pipeline with forecasting using AWS services and Hopsworks Feature Store.",
     category: "Data Engineering",
+    href: "",
     highlights: [
       "18% improved prediction accuracy",
       "70% reduced manual effort",
@@ -42,6 +44,7 @@ const projects = [
     description:
       "ML classification pipeline with cloud deployment, feature engineering, and experiment tracking.",
     category: "Machine Learning",
+    href: "",
     highlights: [
       "15% faster predictions",
       "30% reduced training time",
@@ -55,6 +58,7 @@ const projects = [
     description:
       "Production-grade MLOps with data validation, monitoring, drift detection, and automated retraining.",
     category: "MLOps",
+    href: "",
     highlights: [
       "Automated model retraining",
       "Real-time drift detection",
@@ -68,6 +72,7 @@ const projects = [
     description:
       "Designed a high-performance BI analytics solution using a star-schema data model to analyze large-scale coffee sales data.",
     category: "Data Analytics / BI",
+    href: "",
     highlights: [
       "Star-schema modeling for fast analytical queries",
       "15+ DAX measures for revenue and growth KPIs",
@@ -154,7 +159,24 @@ const ProjectsSectionNew: React.FC = () => {
                       </div>
 
                       <div className="flex-shrink-0 ml-4">
-                        <ArrowUpRight className="text-muted-foreground" size={18} />
+                        {project.href ? (
+                          <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            aria-label={`Open ${project.title}`}
+                            className="inline-flex"
+                          >
+                            <ArrowUpRight className="text-muted-foreground" size={18} />
+                          </a>
+                        ) : (
+                          <span
+                            aria-label={`${project.title} link not set`}
+                            className="inline-flex cursor-not-allowed"
+                          >
+                            <ArrowUpRight className="text-muted-foreground/50" size={18} />
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -193,7 +215,24 @@ const ProjectsSectionNew: React.FC = () => {
                       </div>
                       <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20">{project.category}</span>
                     </div>
-                    <ArrowUpRight className="text-muted-foreground" size={20} />
+                    {project.href ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label={`Open ${project.title}`}
+                        className="inline-flex"
+                      >
+                        <ArrowUpRight className="text-muted-foreground" size={20} />
+                      </a>
+                    ) : (
+                      <span
+                        aria-label={`${project.title} link not set`}
+                        className="inline-flex cursor-not-allowed"
+                      >
+                        <ArrowUpRight className="text-muted-foreground/50" size={20} />
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="font-display text-xl font-bold text-foreground mb-3">{project.title}</h3>
