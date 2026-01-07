@@ -56,6 +56,19 @@ const projects = [
     ],
     tags: ["Airflow", "MLflow", "Docker", "FastAPI"],
   },
+  {
+  icon: BarChart,
+  title: "Sales Data Analytics & Business Insights",
+  description: "End-to-end exploratory data analysis and visualization of transactional sales data to uncover revenue trends, product performance, and regional insights.",
+  category: "Data Analytics",
+  href: "https://github.com/C-bundele/sales-data-analytics-project",
+  highlights: [
+    "Revenue and sales trend analysis",
+    "Product-wise and region-wise performance insights",
+    "Business-driven visual storytelling",
+  ],
+  tags: ["Python", "Pandas", "Matplotlib", "Seaborn", "Jupyter"],
+},
 ];
 
 const ProjectsSection = () => {
