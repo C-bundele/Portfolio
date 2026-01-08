@@ -7,10 +7,10 @@ const experiences = [
     location: "Buffalo, United States",
     period: "August 2025 – December 2025",
     highlights: [
-      "Built a hybrid NLP system with rule-based pipelines and LLM refinement, improving accessibility by 12%",
-      "Designed automated proofreading pipelines using Python & spaCy, improving speed by 60-70%",
-      "Engineered data validation protocols achieving 99% accuracy, freeing up 6-8 representatives per shift",
-      "Deployed validation system with Streamlit UI, SQLite database, and Azure integration",
+      " Built a hybrid NLP system with rule-based pipelines and LLM refinement, leveraging spaCy for NER and regex for publisher-specific rules, improving accessibility by 12%.",
+"Designed automated proofreading pipelines using Python, spaCy, and regex, improving proofreading speed by 60-70% through grammar correction and compliance.",  
+"Engineered data validation protocols that fixed formatting issues and removed over 25% of missing fields, enhancing overall data integrity. Streamlined data validation system, achieving 99% accuracy by automating validation and proofreading tasks.",
+"Deployed validation system integrated with Streamlit UI, local SQLite database, and Azure, freeing up 6-8 representatives per shift.",
     ],
   },
   {

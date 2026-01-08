@@ -5,7 +5,7 @@ const education = [
     degree: "Masters of Science in Data Science",
     school: "University at Buffalo, NY",
     period: "Expected December 2025",
-    gpa: "3.5",
+    gpa: "3.6",
   },
   {
     degree: "Bachelor of Engineering in Computer Science",

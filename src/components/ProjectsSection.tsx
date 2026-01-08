@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Database, Cloud, Brain, Workflow } from "lucide-react";
+import { Github, Database, Cloud, Brain, Workflow, Image } from "lucide-react";
 
 const projects = [
   {
@@ -79,6 +79,19 @@ const projects = [
       "Custom metrics for disagreement, quality, language confidence, and diversity",
     ],
     tags: ["Python", "LLMs", "NLP", "Adversarial AI", "Evaluation Metrics"],
+  },
+  {
+    icon: Image,
+    title: "Image Captioning Generation System",
+    description: "Developed an end-to-end computer vision system that automatically generates natural language captions for images using deep learning–based visual feature extraction and sequence modeling.",
+    category: "Computer Vision",
+    href: "https://github.com/C-bundele/Image_Captioning_Generation",
+    highlights: [
+      "CNN-based visual feature extraction with sequence-to-text generation",
+      "LSTM-based decoder for fluent and context-aware captions",
+      "Evaluation using standard captioning metrics and qualitative analysis",
+    ],
+    tags: ["Computer Vision", "Deep Learning", "CNN", "LSTM", "Image Captioning"],
   },
 ];
 

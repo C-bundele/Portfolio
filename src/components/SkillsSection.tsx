@@ -12,6 +12,10 @@ const skillCategories = [
     skills: ["Apache Kafka", "Airflow", "PyTorch", "PySpark", "TensorFlow", "Scikit-Learn"],
   },
   {
+    title: "AI & Machine Learning",
+    skills: ["LLMs", "NLP", "Computer Vision", "CNN", "LSTM", "Deep Learning", "Adversarial AI"],
+  },
+  {
     title: "Cloud & DevOps",
     skills: ["AWS Batch", "AWS S3", "AWS EMR", "AWS EC2", "AWS Glue", "Docker", "Bash"],
   },
