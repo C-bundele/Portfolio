@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Github, Database, Cloud, Brain, Workflow } from "lucide-react";
 
-const categories = ["All", "Data Engineering", "Machine Learning", "MLOps", "Data Analytics"];
-
 const projects = [
   {
     icon: Cloud,
@@ -21,7 +19,7 @@ const projects = [
     icon: Database,
     title: "NYC Taxi Demand Forecasting Pipeline",
     description: "End-to-end cloud data pipeline with forecasting using AWS services and Hopsworks Feature Store.",
-    category: "Data Engineering",
+    category: ["Data Engineering", "Machine Learning"],
     href: "https://github.com/C-bundele/NY-Taxi",
     highlights: [
       "18% improved prediction accuracy",
@@ -69,15 +67,42 @@ const projects = [
   ],
   tags: ["Python", "Pandas", "Matplotlib", "Seaborn", "Jupyter"],
 },
+  {
+    icon: Brain,
+    title: "Adversarial Essay Generation for LLM Evaluation",
+    description: "Built an adversarial NLP system that generates essays designed to expose disagreement and instability in LLM-based evaluation pipelines.",
+    category: "AI/RAG",
+    href: "https://github.com/C-bundele/adversarial-essay-generation",
+    highlights: [
+      "Adversarial essay generation to maximize evaluator disagreement",
+      "Multi-LLM judging with deterministic scoring and robustness checks",
+      "Custom metrics for disagreement, quality, language confidence, and diversity",
+    ],
+    tags: ["Python", "LLMs", "NLP", "Adversarial AI", "Evaluation Metrics"],
+  },
 ];
+
+const getProjectCategories = (project: { category: string | string[] }) =>
+  Array.isArray(project.category) ? project.category : [project.category];
 
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const categories = [
+    "All",
+    ...Array.from(
+      new Set(
+        projects
+          .flatMap((project) => getProjectCategories(project))
+          .filter((category) => category.trim().length > 0)
+      )
+    ),
+  ];
+
   const filteredProjects = activeCategory === "All" 
     ? projects 
-    : projects.filter(project => project.category === activeCategory);
+    : projects.filter(project => getProjectCategories(project).includes(activeCategory));
 
   const marqueeProjects = projects.concat(projects);
 
@@ -127,7 +152,7 @@ const ProjectsSection = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               className={
-              `projects-marquee-item flex-shrink-0 w-[420px] md:w-[520px] h-[420px] md:h-[440px] ${
+              `projects-marquee-item flex-shrink-0 w-[420px] md:w-[520px] h-[380px] md:h-[400px] ${
                 hoveredIndex === index ? "is-active" : ""
               }`
               }
@@ -145,9 +170,16 @@ const ProjectsSection = () => {
                       <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <project.icon className="text-primary-foreground" size={22} />
                       </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20">
-                        {project.category}
-                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {getProjectCategories(project).map((category) => (
+                          <span
+                            key={category}
+                            className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
+                          >
+                            {category}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
@@ -299,9 +331,16 @@ const ProjectsSection = () => {
                     <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <project.icon className="text-primary-foreground" size={22} />
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20">
-                      {project.category}
-                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {getProjectCategories(project).map((category) => (
+                        <span
+                          key={category}
+                          className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
+                        >
+                          {category}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 

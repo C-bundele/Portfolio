@@ -7,6 +7,7 @@ const categories = [
   "Machine Learning",
   "MLOps",
   "Data Analytics / BI",
+  "AI/RAG",
 ];
 
 const projects = [
@@ -80,6 +81,20 @@ const projects = [
     ],
     tags: ["Power BI", "DAX", "Data Modeling", "Star Schema", "Analytics"],
   },
+  {
+  icon: Database,
+  title: "Adversarial Essay Generation for LLM Evaluation",
+  description:
+    "Built an adversarial NLP system that generates essays designed to expose disagreement and instability in LLM-based evaluation pipelines.",
+  category: "AI/RAG",
+  href: "https://github.com/C-bundele/adversarial-essay-generation",
+  highlights: [
+    "Adversarial essay generation to maximize evaluator disagreement",
+    "Multi-LLM judging with deterministic scoring and robustness checks",
+    "Custom metrics for disagreement, quality, language confidence, and diversity",
+  ],
+  tags: ["Python", "LLMs", "NLP", "Adversarial AI", "Evaluation Metrics"],
+},
 ];
 
 const ProjectsSectionNew: React.FC = () => {
