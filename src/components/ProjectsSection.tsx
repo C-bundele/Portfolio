@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Database, Cloud, Brain, Workflow, Image } from "lucide-react";
+import { Github, Database, Cloud, Brain, Workflow, Image, BarChart3 } from "lucide-react";
 
 const projects = [
   {
@@ -92,6 +92,19 @@ const projects = [
       "Evaluation using standard captioning metrics and qualitative analysis",
     ],
     tags: ["Computer Vision", "Deep Learning", "CNN", "LSTM", "Image Captioning"],
+  },
+  {
+    icon: BarChart3,
+    title: "Citi Bike Demand Forecasting System",
+    description: "Built a production-grade ML pipeline to forecast 6-hourly Citi Bike demand per station using engineered time-series features, LightGBM, and Hopsworks Feature Store.",
+    category: ["Data Engineering", "Machine Learning", "MLOps"],
+    href: "https://github.com/C-bundele/City_Bike",
+    highlights: [
+      "End-to-end ML pipeline with data engineering, modeling, and inference",
+      "Hopsworks Feature Store integration for versioned feature reuse",
+      "Batch prediction with automated scheduling and frontend visualization",
+    ],
+    tags: ["Time Series", "LightGBM", "Hopsworks", "Feature Store", "ML Pipeline"],
   },
 ];
 
